@@ -1,0 +1,10 @@
+Algoritmo ParOImpar
+Definir numero Como Entero
+Escribir "Ingrese un numero entero:"
+Leer numero
+Si numero % 2 == 0 Entonces
+Escribir "El numero es Par."
+Sino
+Escribir "El numero es Impar."
+FinSi
+FinAlgoritmo
