@@ -1,0 +1,9 @@
+Algoritmo TotalCompra
+Definir cantidad Como Entero
+Definir total Como Real
+PRECIO_UNITARIO <- 12
+Escribir "Ingrese la cantidad de cuadernos a comprar:"
+Leer cantidad
+total <- cantidad * PRECIO_UNITARIO
+Escribir "El total a pagar es: ", total, " Bs"
+FinAlgoritmo
