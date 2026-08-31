@@ -1,0 +1,12 @@
+Algoritmo DescuentoCompra
+Definir montoCompra, descuento, montoFinal Como Real
+Escribir "Ingrese el monto total de la compra:"
+Leer montoCompra
+Si montoCompra > 100 Entonces
+descuento <- montoCompra * 0.10
+Sino
+descuento <- 0
+FinSi
+montoFinal <- montoCompra - descuento
+Escribir "El total final a pagar es: ", montoFinal, " Bs"
+FinAlgoritmo
