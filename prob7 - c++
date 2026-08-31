@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main() {
+double nota;
+cout << "Ingrese la nota final del estudiante: ";
+cin >> nota;
+// Evaluación condicional
+if (nota >= 51.0) {
+cout << "Aprobado" << endl;
+} else {
+cout << "Reprobado" << endl;
+}
+return 0;
+} 
