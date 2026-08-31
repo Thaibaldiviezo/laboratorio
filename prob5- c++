@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+int main() {
+int cantidad;
+const double PRECIO_UNITARIO = 12.0;
+double total;
+cout << "Ingrese la cantidad de cuadernos a comprar: ";
+cin >> cantidad;
+total = cantidad * PRECIO_UNITARIO;
+cout << "El total a pagar es: " << total << " Bs" << endl;
+return 0;
+}
