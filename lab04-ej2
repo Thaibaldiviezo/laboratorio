@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+
+    string nombre;
+    double monto;
+    double descuento;
+    double total;
+
+    cout << "Ingrese el nombre del cliente: ";
+    cin >> nombre;
+
+    cout << "Ingrese el monto total de la compra (Bs): ";
+    cin >> monto;
+
+    if (monto <= 100) {
+        descuento = 0;
+        cout << "Categoria: Sin descuento (0%)" << endl;
+    }
+    else if (monto > 100 && monto <= 500) {
+        descuento = 0.05;
+        cout << "Categoria: Descuento Bronce (5%)" << endl;
+    }
+    else if (monto > 500 && monto <= 1000) {
+        descuento = 0.10;
+        cout << "Categoria: Descuento Plata (10%)" << endl;
+    }
+    else {
+        descuento = 0.15;
+        cout << "Categoria: Descuento Oro (15%)" << endl;
+    }
+
+    double montoDescuento = monto * descuento;
+    total = monto - montoDescuento;
+
+    cout << endl;
+    cout << "--- RESUMEN DE VENTA ---" << endl;
+    cout << "Nombre Cliente: " << nombre << endl;
+    cout << "Subtotal: Bs " << monto << endl;
+    cout << "Descuento aplicado: Bs " << montoDescuento << endl;
+    cout << "Total a pagar: Bs " << total << endl;
+
+    return 0;
+}
