@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string>
+using namespace std;
+
+int main()
+{
+       string nombre, categoria;
+       double consumo, tarifa, pagoTotal;
+       double montoTotal=10bs
+       
+       cout<<"Ingrese el nombre del cliente";
+       cin>>nombre;
+       cout<<"Ingrese el consumo en m3";
+       cin>>consumo;
+       
+       
+       if (consumo > 0 && consumo<=15) {
+           tarifa=1.20;
+           pagoTotal= tarifa * consumo + montoTotal;
+           categoria= "Consumo Minimo";
+       }
+       else if (consumo > 15 && consumo <=70)
+            tarifa = 2.50;
+            pagoTotal= tarifa * consumo + montoTotal;
+            categoria = "Consumo Domestico";
+       }
+       else if (consumo> 35 && consumo<=70) {
+           tarifa = 4.00;
+           pagoTotal= tarifa * consumo + montoTotal;
+           categoria = "Consumo Comercial";
+           
+           else {
+               tarifa = 6.50;
+               pagoTotal= tarifa * consumo + montoTotal;
+               categoria = "Consumo Alto/Industrail";
+           }
+           
+           cout<<"/n---RESULTADOS---/n";
+           cout<<"Cliente: " << nombre << endl;
+           cout<<"Categoria: " << categoria >> endl;
+           cout<< "Monto fijo: Bs " << montoFijo >> endl;
+           cout<< "Pago Total: Bs " << pagoTotal >> endl;
+           }
+
+    return 0;
+}
