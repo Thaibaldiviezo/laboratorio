@@ -1,0 +1,94 @@
+#include <iostream>
+using namespace std; 
+int main()
+{
+    char opcion;
+    double peso;
+    double tarifaBase;
+    double precioExtra;
+    double montoTotal;
+     
+    do {
+    //Menu
+        cout "\n==================================" << endl;
+        cout << " SISTEMA DE ENVIOS Y ENCOMIENDAS " << endl;
+        cout << "==================================" << endl;
+        cout << "[L] La Paz / El Alto" << endl;
+        cout << "[C] Cochabamba" << endl;
+        cout << "[S] Santa Cruz" << endl;
+        cout << "[X] Salir del sistema" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch(opcion) {
+
+       case 'L':
+            case 'l':
+
+                tarifaBase = 7.00;
+                precioExtra = 3.00;
+
+                cout << "Ingrese el peso del paquete (Kg): ";
+                cin >> peso;
+
+                if (peso > 2)
+                    montoTotal = tarifaBase + ((peso - 2) * precioExtra);
+                else
+                    montoTotal = tarifaBase;
+
+                cout << "Destino: La Paz / El Alto" << endl;
+                cout << "Costo total: Bs " << montoTotal << endl;
+                break;
+
+            case 'C':
+            case 'c':
+
+                tarifaBase = 5.00;
+                precioExtra = 2.00;
+
+                cout << "Ingrese el peso del paquete (Kg): ";
+                cin >> peso;
+
+                if (peso > 2)
+                    montoTotal = tarifaBase + ((peso - 2) * precioExtra);
+                else
+                    montoTotal = tarifaBase;
+
+                cout << "Destino: Cochabamba" << endl;
+                cout << "Costo total: Bs " << montoTotal << endl;
+                break;
+
+            case 'S':
+            case 's':
+
+                tarifaBase = 8.00;
+                precioExtra = 4.00;
+
+                cout << "Ingrese el peso del paquete (Kg): ";
+                cin >> peso;
+
+                if (peso > 2)
+                    montoTotal = tarifaBase + ((peso - 2) * precioExtra);
+                else
+                    montoTotal = tarifaBase;
+
+                cout << "Destino: Santa Cruz" << endl;
+                cout << "Costo total: Bs " << montoTotal << endl;
+                break;
+
+            case 'X':
+            case 'x':
+
+                cout << "Saliendo del sistema..." << endl;
+                break;
+
+            default:
+
+                cout << "Opcion invalida." << endl;
+        }
+
+    } while(opcion != 'X' && opcion != 'x');
+
+
+    return 0;
+}
