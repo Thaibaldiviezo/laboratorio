@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+double calcularPromedio(int cantidadEvaluaciones) {
+    double nota;
+    double sumaNotas = 0;
+
+    for (int i = 1; i <= cantidadEvaluaciones; i++) {
+        cout << "Ingrese la nota de evaluacion " << i << ": ";
+        cin >> nota;
+
+        while (nota < 0 || nota > 100) {
+            cout << "Ingrese una nota entre 0 y 100: ";
+            cin >> nota;
+        }
+
+        sumaNotas = sumaNotas + nota;
+    }
+
+    return sumaNotas / cantidadEvaluaciones;
+}
+
+void determinarEstado(double promedio) {
+    if (promedio >= 51) {
+        cout << "Aprobado" << endl;
+    }
+    else {
+        cout << "Reprobado" << endl;
+    }
+}
+
+int main() {
+    int cantidadEvaluaciones;
+    double promedio;
+
+    cout << "Ingrese la cantidad de evaluaciones: ";
+    cin >> cantidadEvaluaciones;
+
+    while (cantidadEvaluaciones <= 0) {
+        cout << "La cantidad debe ser mayor a 0: ";
+        cin >> cantidadEvaluaciones;
+    }
+
+    promedio = calcularPromedio(cantidadEvaluaciones);
+
+    cout << "Promedio: " << promedio << endl;
+
+    determinarEstado(promedio);
+
+    return 0;
+}
