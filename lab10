@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+void leerNotas(int notas[], int &n) {
+    do {
+    cout << "Ingrese la cantidad de estudiantes: ";
+    cin >> n;
+    } while (n < 1 || n > 100);
+
+    for (int i = 0; i < n; i++) {
+    do {
+    cout << "Nota estudiante " << i + 1 << ": ";
+    cin >> notas[i];
+    } while (notas[i] < 0 || notas[i] > 100);
+    }
+}
+    double calcularPromedio(int notas[], int n) {
+    int suma = 0;
+    for (int i = 0; i < n; i++) {
+  suma += notas[i];
+ return (double)suma / n;
+}
+void calcularMayorMenor(int notas[], int n,
+   int &mayor, int &menor) {
+    mayor = notas[0];
+    menor = notas[0];
+
+    for (int i = 1; i < n; i++) {
+   if (notas[i] > mayor) {
+   mayor = notas[i];
+   }
+
+    if (notas[i] < menor) {
+   menor = notas[i];
+    }
+    }
+}
+
+void mostrarResultados(int notas[], int n,
+   double promedio,
+   int mayor, int menor) {
+    cout << "\nNOTAS REGISTRADAS\n";
+for (int i = 0; i < n; i++) {
+    cout << notas[i] << " ";
+    }
+
+    cout << "\n\nPromedio general: " << promedio;
+    cout << "\nNota mayor: " << mayor;
+    cout << "\nNota menor: " << menor << endl;
+}
+
+int main() {
+    int notas[100];
+    int n, mayor, menor;
+    double promedio;
+
+    leerNotas(notas, n);
+
+    promedio = calcularPromedio(notas, n);
+
+    calcularMayorMenor(notas, n, mayor, menor);
+
+    mostrarResultados(notas, n, promedio, mayor, menor);
+
+    return 0;
+}
