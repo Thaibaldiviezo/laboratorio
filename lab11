@@ -1,0 +1,340 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+// ==========================================
+// 1. PROTOTIPOS DE FUNCIONES
+// ==========================================
+
+void mostrarMenu();
+void ejecutarMenu();
+
+void registrar(int notas[], int &n);
+void mostrar(int notas[], int n);
+
+float promedio(int notas[], int n);
+
+void mayorMenor(int notas[], int n,
+                int &mayor, int &menor);
+
+int contarAprobados(int notas[], int n);
+int buscar(int notas[], int n, int valor);
+
+void actualizar(int notas[], int n);
+void resultadosActualizados(int notas[], int n);
+
+
+// ==========================================
+// 2. FUNCION PRINCIPAL
+// ==========================================
+
+int main() {
+
+    ejecutarMenu();
+
+    return 0;
+}
+
+
+// ==========================================
+// 3. DEFINICION DE FUNCIONES
+// ==========================================
+
+// FUNCION 1: MOSTRAR MENU
+
+void mostrarMenu() {
+
+    cout << "\n=====================================\n";
+    cout << "   SISTEMA DE CALIFICACIONES\n";
+    cout << "=====================================\n";
+    cout << "1. Registrar calificaciones\n";
+    cout << "2. Mostrar calificaciones\n";
+    cout << "3. Calcular promedio general\n";
+    cout << "4. Mostrar nota mayor y menor\n";
+    cout << "5. Contar aprobados y reprobados\n";
+    cout << "6. Buscar una calificacion\n";
+    cout << "7. Actualizar una calificacion\n";
+    cout << "8. Mostrar resultados actualizados\n";
+    cout << "0. Salir\n";
+    cout << "=====================================\n";
+}
+
+
+// FUNCION 2: CONTROLAR EL MENU
+
+void ejecutarMenu() {
+
+    int notas[30];
+    int n = 0;
+    int opcion;
+    int posicion;
+    int mayor, menor;
+    int valor;
+    int aprobados, reprobados;
+
+    cout << fixed << setprecision(2);
+
+    do {
+
+        mostrarMenu();
+
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        if (opcion >= 2 && opcion <= 8 && n == 0) {
+
+            cout << "\nPrimero debe registrar "
+                 << "las calificaciones.\n";
+
+            continue;
+        }
+
+        switch (opcion) {
+
+            case 1:
+                registrar(notas, n);
+                break;
+
+            case 2:
+                mostrar(notas, n);
+                break;
+
+            case 3:
+                cout << "\nPromedio general: "
+                     << promedio(notas, n) << endl;
+                break;
+
+            case 4:
+                mayorMenor(notas, n, mayor, menor);
+
+                cout << "\nNota mayor: " << mayor;
+                cout << "\nNota menor: " << menor << endl;
+                break;
+
+            case 5:
+                aprobados = contarAprobados(notas, n);
+                reprobados = n - aprobados;
+
+                cout << "\nAprobados: " << aprobados;
+                cout << "\nReprobados: " << reprobados
+                     << endl;
+                break;
+
+            case 6:
+                do {
+
+                    cout << "\nIngrese la nota a buscar: ";
+                    cin >> valor;
+
+                    if (valor < 0 || valor > 100) {
+                        cout << "Nota incorrecta.\n";
+                    }
+
+                } while (valor < 0 || valor > 100);
+
+                posicion = buscar(notas, n, valor);
+
+                if (posicion == -1) {
+                    cout << "Nota no encontrada.\n";
+                } else {
+                    cout << "Nota encontrada en el "
+                         << "estudiante "
+                         << posicion + 1 << endl;
+                }
+                break;
+
+            case 7:
+                actualizar(notas, n);
+                break;
+
+            case 8:
+                resultadosActualizados(notas, n);
+                break;
+
+            case 0:
+                cout << "\nGracias por utilizar "
+                     << "el sistema.\n";
+                break;
+
+            default:
+                cout << "\nOpcion incorrecta.\n";
+        }
+
+        cout << endl;
+
+    } while (opcion != 0);
+}
+
+
+// FUNCION 3: REGISTRAR CALIFICACIONES
+
+void registrar(int notas[], int &n) {
+
+    do {
+
+        cout << "\nIngrese la cantidad de "
+             << "estudiantes (1-30): ";
+        cin >> n;
+
+        if (n < 1 || n > 30) {
+            cout << "Cantidad incorrecta.\n";
+        }
+
+    } while (n < 1 || n > 30);
+
+    for (int i = 0; i < n; i++) {
+
+        do {
+
+            cout << "Nota del estudiante "
+                 << i + 1 << ": ";
+            cin >> notas[i];
+
+            if (notas[i] < 0 || notas[i] > 100) {
+                cout << "La nota debe estar "
+                     << "entre 0 y 100.\n";
+            }
+
+        } while (notas[i] < 0 || notas[i] > 100);
+    }
+
+    cout << "\nCalificaciones registradas "
+         << "correctamente.\n";
+}
+
+
+// FUNCION 4: MOSTRAR CALIFICACIONES
+
+void mostrar(int notas[], int n) {
+
+    cout << "\n----- CALIFICACIONES REGISTRADAS -----\n";
+
+    for (int i = 0; i < n; i++) {
+
+        cout << "Estudiante " << i + 1
+             << ": " << notas[i] << endl;
+    }
+}
+
+
+// FUNCION 5: CALCULAR PROMEDIO
+
+float promedio(int notas[], int n) {
+
+    int suma = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        suma = suma + notas[i];
+    }
+
+    float resultado = (float)suma / n;
+
+    return resultado;
+}
+
+
+// FUNCION 6: OBTENER MAYOR Y MENOR
+
+void mayorMenor(int notas[], int n,
+                int &mayor, int &menor) {
+
+    mayor = notas[0];
+    menor = notas[0];
+
+    for (int i = 1; i < n; i++) {
+
+        if (notas[i] > mayor) {
+            mayor = notas[i];
+        }
+
+        if (notas[i] < menor) {
+            menor = notas[i];
+        }
+    }
+}
+
+
+// FUNCION 7: CONTAR APROBADOS
+
+int contarAprobados(int notas[], int n) {
+
+    int contador = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        if (notas[i] >= 51) {
+            contador++;
+        }
+    }
+
+    return contador;
+}
+
+
+// FUNCION 8: BUSCAR UNA CALIFICACION
+
+int buscar(int notas[], int n, int valor) {
+
+    for (int i = 0; i < n; i++) {
+
+        if (notas[i] == valor) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
+// FUNCION 9: ACTUALIZAR CALIFICACION
+
+void actualizar(int notas[], int n) {
+
+    int estudiante;
+    int nuevaNota;
+
+    do {
+
+        cout << "\nIngrese el estudiante a "
+             << "modificar (1-" << n << "): ";
+        cin >> estudiante;
+
+        if (estudiante < 1 || estudiante > n) {
+            cout << "Estudiante incorrecto.\n";
+        }
+
+    } while (estudiante < 1 || estudiante > n);
+
+    do {
+
+        cout << "Ingrese la nueva nota: ";
+        cin >> nuevaNota;
+
+        if (nuevaNota < 0 || nuevaNota > 100) {
+            cout << "La nota debe estar "
+                 << "entre 0 y 100.\n";
+        }
+
+    } while (nuevaNota < 0 || nuevaNota > 100);
+
+    notas[estudiante - 1] = nuevaNota;
+
+    cout << "\nCalificacion actualizada "
+         << "correctamente.\n";
+}
+
+
+// FUNCION 10: RESULTADOS ACTUALIZADOS
+
+void resultadosActualizados(int notas[], int n) {
+
+    cout << "\n========== RESULTADOS ACTUALIZADOS ==========\n";
+
+    mostrar(notas, n);
+
+    cout << "\nNuevo promedio: "
+         << promedio(notas, n) << endl;
+
+    cout << "=============================================\n";
+}
