@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// PROTOTIPOS DE FUNCIONES
+
+void registrarPreguntas(string preguntas[], int &n);
+void mostrarPreguntas(string preguntas[], int n);
+
+// FUNCION PRINCIPAL
+
+int main() {
+
+    string preguntas[100];
+    int n;
+
+    registrarPreguntas(preguntas, n);
+
+    mostrarPreguntas(preguntas, n);
+
+    return 0;
+}
+
+// DEFINICION DE FUNCIONES
+
+// FUNCION 1: REGISTRAR PREGUNTAS
+
+void registrarPreguntas(string preguntas[], int &n) {
+
+    do {
+        cout << "Ingrese la cantidad de preguntas: ";
+        cin >> n;
+
+    } while (n < 1 || n > 100);
+
+    cin.ignore();
+
+    for (int i = 0; i < n; i++) {
+
+        do {
+
+            cout << "\nPregunta " << i + 1 << ": ";
+            getline(cin, preguntas[i]);
+
+            if (preguntas[i].length() == 0 ||
+                preguntas[i].at(0) == ' ' ||
+                preguntas[i].at(preguntas[i].length() - 1) == ' ') {
+
+                cout << "Pregunta incorrecta. "
+                     << "No debe estar vacia ni tener espacios "
+                     << "al inicio o al final.\n";
+            }
+
+        } while (preguntas[i].length() == 0 ||
+                 preguntas[i].at(0) == ' ' ||
+                 preguntas[i].at(preguntas[i].length() - 1) == ' ');
+    }
+}
+
+// FUNCION 2: MOSTRAR PREGUNTAS
+
+void mostrarPreguntas(string preguntas[], int n) {
+
+    cout << "\n===== PREGUNTAS REGISTRADAS =====\n";
+
+    for (int i = 0; i < n; i++) {
+
+        cout << i + 1 << ". " << preguntas[i] << endl;
+    }
+}
