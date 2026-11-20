@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// PROTOTIPOS
+void registrar(string &mensaje, string &palabra);
+void buscarPalabra(string mensaje, string palabra);
+
+int main() {
+    string mensaje, palabra;
+
+    registrar(mensaje, palabra);
+
+    buscarPalabra(mensaje, palabra);
+
+    return 0;
+}
+
+// REGISTRAR DATOS
+void registrar(string &mensaje, string &palabra) {
+    cout << "Ingrese un mensaje: ";
+    getline(cin, mensaje);
+
+    do {
+        cout << "Ingrese la palabra a buscar: ";
+        getline(cin, palabra);
+
+        if (palabra.length() == 0) {
+            cout << "No puede estar vacia." << endl;
+        }
+
+    } while (palabra.length() == 0);
+}
+
+// BUSCAR PALABRA
+void buscarPalabra(string mensaje, string palabra) {
+    size_t posicion = mensaje.find(palabra);
+
+    if (posicion != string::npos) {
+        cout << "Posicion: " << posicion << endl;
+    }
+    else {
+        cout << "Palabra no encontrada." << endl;
+    }
+}
